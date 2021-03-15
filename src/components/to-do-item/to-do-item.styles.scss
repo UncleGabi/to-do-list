@@ -1,0 +1,55 @@
+@mixin btn {
+    margin: 0 5px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bolder;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 7em;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.to-do-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+
+    & .checked {
+        text-decoration: line-through;
+    }
+
+    & .buttons {
+        height: 100%;
+        width: fit-content;
+        display: flex;
+        justify-content: space-evenly;
+
+        & .ready-btn {
+            @include btn();
+            background-color: green;
+
+            &:active {
+                background-color: darkgreen
+            }
+        }
+
+        & .delete-btn {
+            @include btn();
+            background-color: red;
+
+            &:active {
+                background-color: darkred;
+            }
+        }
+    }
+}

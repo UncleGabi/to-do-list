@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: brown;
+}
+
+.container {
+  min-height: fit-content;
+  width: 50%;
+  margin: 10% auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: #e4d3be;
+}
