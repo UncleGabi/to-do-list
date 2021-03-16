@@ -12,7 +12,7 @@ class Header extends Component {
   }
 
   render() {
-    const { handleChange, handleClick, inputValue } = this.props;
+    const { handleChange, handleAdd, inputValue } = this.props;
 
     return (
       <div className="header">
@@ -23,7 +23,7 @@ class Header extends Component {
             value={inputValue}
             label="Add ToDo..."
           />
-          <button onClick={handleClick}>
+          <button onClick={handleAdd}>
             <span class="material-icons">add</span>
           </button>
         </div>

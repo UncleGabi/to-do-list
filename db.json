@@ -1,0 +1,18 @@
+{
+  "todoItems": [
+    {
+      "id": 1,
+      "name": "milk",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "name": "cereal",
+      "checked": true
+    }
+  ],
+  "appData": {
+    "id": 1,
+    "todoItem": ""
+  }
+}

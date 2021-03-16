@@ -4,7 +4,7 @@ import "./to-do-items.styles.scss";
 
 import ToDoItem from "../to-do-item/to-do-item.component";
 
-const ToDoItems = ({ todoItems, handleDelete, handleCheck, enabled }) => {
+const ToDoItems = ({ todoItems, handleDelete, handleCheck }) => {
   return (
     <div className="to-do-items">
       {todoItems.map((item) => (
@@ -13,7 +13,6 @@ const ToDoItems = ({ todoItems, handleDelete, handleCheck, enabled }) => {
           todoItem={item}
           handleDelete={handleDelete}
           handleCheck={handleCheck}
-          enabled={enabled}
         />
       ))}
     </div>
