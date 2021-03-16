@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import uuid from "react-uuid";
 
 import "./App.css";
 
@@ -7,7 +8,8 @@ import Header from "./components/header/header.component";
 import ToDoItems from "./components/to-do-items/to-do-items.component";
 
 const api = axios.create({
-  baseURL: "https://my-json-server.typicode.com/UncleGabi/to-do-list/todoItems",
+  // baseURL: "https://my-json-server.typicode.com/UncleGabi/to-do-list/todoItems",
+  baseURL: "http://localhost:3003/todoItems",
 });
 
 class App extends Component {
@@ -15,7 +17,7 @@ class App extends Component {
     super();
 
     this.state = {
-      id: 1,
+      id: uuid(),
       todoItem: "",
       todoItems: [],
     };
@@ -23,13 +25,13 @@ class App extends Component {
 
   async componentDidMount() {
     const res = await api.get("/");
-    this.setState({ todoItems: res.data });
+    this.setState(res.data);
   }
 
   async componentWillUnmount() {
     const { todoItems } = this.state;
 
-    api.post("/", { todoItems: todoItems });
+    api.post("/", { todoItems });
   }
 
   /* ------------------------------------------------------------------------------------------------------------------- */
@@ -50,11 +52,11 @@ class App extends Component {
       ? this.setState({ todoItems: [...todoItems, newItem] })
       : this.setState({ todoItems: [...todoItems] });
 
-    this.setState({ id: id + 1 });
+    this.setState({ id: id + 1 }, () => console.log(this.state));
     this.setState({ todoItem: "" });
 
-    const res = await api.post("/", { todoItems: [...todoItems, newItem] });
-    console.log(res);
+    await api.post("/", newItem);
+    // console.log(res.data);
   };
 
   /* ------------------------------------------------------------------------------------------------------------------- */
@@ -65,7 +67,7 @@ class App extends Component {
 
     this.setState({ todoItems: filteredItems });
     const res = await api.post("/", { todoItems: filteredItems });
-    console.log(res);
+    console.log(res.data);
   };
 
   /* ------------------------------------------------------------------------------------------------------------------- */

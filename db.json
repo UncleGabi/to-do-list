@@ -1,14 +1,19 @@
 {
   "todoItems": [
     {
-      "id": 1,
-      "name": "milk",
+      "id": "1b5ae1-131f-48ba-d45d-d7bc350c6",
+      "name": "Learn React",
       "checked": false
     },
     {
-      "id": 2,
-      "name": "cereal",
-      "checked": true
+      "id": "1b5ae1-131f-48ba-d45d-d7bc350c61",
+      "name": "Have Lunch",
+      "checked": false
+    },
+    {
+      "id": "1b5ae1-131f-48ba-d45d-d7bc350c611",
+      "name": "Return to Budapest",
+      "checked": false
     }
   ],
   "appData": {
