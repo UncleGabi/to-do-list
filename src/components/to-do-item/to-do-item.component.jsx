@@ -19,10 +19,7 @@ const ToDoItem = ({ todoItem, handleDelete, handleCheck }) => {
             {todoItem.checked ? "clear" : "check"}
           </span>
         </button>
-        <button
-          className="delete-btn"
-          onClick={() => handleDelete(todoItem.id)}
-        >
+        <button className="delete-btn" onClick={() => handleDelete(todoItem)}>
           Delete
           <span class="material-icons">delete</span>
         </button>

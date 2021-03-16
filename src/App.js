@@ -8,8 +8,8 @@ import Header from "./components/header/header.component";
 import ToDoItems from "./components/to-do-items/to-do-items.component";
 
 const api = axios.create({
-  // baseURL: "https://my-json-server.typicode.com/UncleGabi/to-do-list/todoItems",
-  baseURL: "http://localhost:3003/todoItems",
+  baseURL: "https://my-json-server.typicode.com/UncleGabi/to-do-list/todoItems",
+  // baseURL: "http://localhost:3003/todoItems",
 });
 
 class App extends Component {
@@ -25,7 +25,7 @@ class App extends Component {
 
   async componentDidMount() {
     const res = await api.get("/");
-    this.setState(res.data);
+    this.setState({ todoItems: res.data });
   }
 
   async componentWillUnmount() {
@@ -45,41 +45,48 @@ class App extends Component {
   /* ------------------------------------------------------------------------------------------------------------------- */
 
   handleAdd = async () => {
-    const { id, todoItem, todoItems } = this.state;
-    const newItem = { id, name: todoItem, checked: false };
+    const { todoItem, todoItems } = this.state;
+    const newItem = { id: uuid(), name: todoItem, checked: false };
 
     todoItem.length
       ? this.setState({ todoItems: [...todoItems, newItem] })
       : this.setState({ todoItems: [...todoItems] });
 
-    this.setState({ id: id + 1 }, () => console.log(this.state));
     this.setState({ todoItem: "" });
 
     await api.post("/", newItem);
-    // console.log(res.data);
   };
 
   /* ------------------------------------------------------------------------------------------------------------------- */
 
-  handleDelete = async (itemId) => {
+  handleDelete = async (todoItem) => {
     const { todoItems } = this.state;
-    const filteredItems = todoItems.filter((item) => item.id !== itemId);
+    const filteredItems = todoItems.filter((item) => item.id !== todoItem.id);
 
     this.setState({ todoItems: filteredItems });
-    const res = await api.post("/", { todoItems: filteredItems });
-    console.log(res.data);
+
+    api
+      .delete(`/${todoItem.id}`)
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+    // console.log(this.state);
   };
 
   /* ------------------------------------------------------------------------------------------------------------------- */
 
-  handleCheck = (todoItem) => {
+  handleCheck = async (todoItem) => {
     const { todoItems } = this.state;
     const index = todoItems.indexOf(todoItem);
     const currentItem = todoItems[index];
 
     currentItem.checked = !currentItem.checked;
     this.setState({ todoItems: todoItems });
-    console.log(this.state);
+
+    const res = await api.put(`/${todoItem.id}`, {
+      ...todoItem,
+    });
+    console.log(res.data);
+    return res.data;
   };
 
   /* ------------------------------------------------------------------------------------------------------------------- */
