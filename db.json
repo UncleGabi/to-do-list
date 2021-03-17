@@ -8,12 +8,12 @@
     {
       "id": "2ccbf3-815-ee2b-0c4b-0016152a2a",
       "name": "Return to BP",
-      "checked": false
+      "checked": true
     },
     {
       "id": "782c2fb-77a0-2-cdcc-1a6e13f8d88",
       "name": "Have a meeting",
-      "checked": false
+      "checked": true
     }
   ],
   "appData": {

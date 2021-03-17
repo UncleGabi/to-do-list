@@ -17,7 +17,6 @@ class App extends Component {
     super();
 
     this.state = {
-      id: uuid(),
       todoItem: "",
       todoItems: [],
     };
@@ -26,12 +25,6 @@ class App extends Component {
   async componentDidMount() {
     const res = await api.get("/");
     this.setState({ todoItems: res.data });
-  }
-
-  async componentWillUnmount() {
-    const { todoItems } = this.state;
-
-    api.post("/", { todoItems });
   }
 
   /* ------------------------------------------------------------------------------------------------------------------- */
@@ -44,7 +37,7 @@ class App extends Component {
 
   /* ------------------------------------------------------------------------------------------------------------------- */
 
-  handleAdd = async () => {
+  handleAdd = () => {
     const { todoItem, todoItems } = this.state;
     const newItem = { id: uuid(), name: todoItem, checked: false };
 
@@ -54,7 +47,7 @@ class App extends Component {
 
     this.setState({ todoItem: "" });
 
-    await api.post("/", newItem);
+    api.post("/", newItem);
   };
 
   /* ------------------------------------------------------------------------------------------------------------------- */
@@ -65,11 +58,7 @@ class App extends Component {
 
     this.setState({ todoItems: filteredItems });
 
-    api
-      .delete(`/${todoItem.id}`)
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-    // console.log(this.state);
+    api.delete(`/${todoItem.id}`);
   };
 
   /* ------------------------------------------------------------------------------------------------------------------- */
@@ -85,7 +74,6 @@ class App extends Component {
     const res = await api.put(`/${todoItem.id}`, {
       ...todoItem,
     });
-    console.log(res.data);
     return res.data;
   };
 
