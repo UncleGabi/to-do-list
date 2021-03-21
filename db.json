@@ -1,21 +1,4 @@
 {
-  "todoItems": [
-    {
-      "id": "3a4e37-accf-7a0-6f0-fe6485cf57",
-      "name": "Learn React",
-      "checked": false
-    },
-    {
-      "id": "2ccbf3-815-ee2b-0c4b-0016152a2a",
-      "name": "Return to BP",
-      "checked": true
-    },
-    {
-      "id": "782c2fb-77a0-2-cdcc-1a6e13f8d88",
-      "name": "Have a meeting",
-      "checked": true
-    }
-  ],
   "garrisons": [
     {
       "id": 1,
